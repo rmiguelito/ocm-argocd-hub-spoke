@@ -11,7 +11,7 @@ metadata:
 spec:
   remediationAction: enforce
   disabled: false
-  policy-templates:
+  policy-templates: 
     - objectDefinition:
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
@@ -43,35 +43,6 @@ spec:
                   clusterResourceWhitelist:
                     - group: '*'
                       kind: '*'
-    - objectDefinition:
-        apiVersion: policy.open-cluster-management.io/v1
-        kind: ConfigurationPolicy
-        metadata:
-          name: create-appproject-hub
-        spec:
-          remediationAction: enforce
-          severity: low
-          namespaceSelector:
-            include:
-              - argocd # Target the hub cluster's argocd namespace
-          object-templates:
-            - complianceType: musthave
-              objectDefinition:
-                apiVersion: argoproj.io/v1alpha1
-                kind: AppProject
-                metadata:
-                  name: xpto
-                  namespace: argocd
-                spec:
-                  description: ArgoCD Project XPTO (Hub)
-                  sourceRepos:
-                    - '*'
-                  destinations:
-                    - namespace: '*'
-                      server: '*'
-                  clusterResourceWhitelist:
-                    - group: '*'
-                      kind: '*'
 ---
 apiVersion: cluster.open-cluster-management.io/v1beta1
 kind: Placement
@@ -90,10 +61,6 @@ spec:
           matchExpressions:
             - key: cluster.open-cluster-management.io/clusterset
               operator: Exists
-            - key: name
-              operator: In
-              values:
-                - local-cluster
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
