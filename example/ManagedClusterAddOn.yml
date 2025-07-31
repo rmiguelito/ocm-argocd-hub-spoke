@@ -1,0 +1,16 @@
+---
+apiVersion: addon.open-cluster-management.io/v1alpha1
+kind: ManagedClusterAddOn
+metadata:
+  name: governance-policy-framework
+  namespace: cluster1
+spec:
+  installNamespace: open-cluster-management-agent-addon
+---
+apiVersion: addon.open-cluster-management.io/v1alpha1
+kind: ManagedClusterAddOn
+metadata:
+  name: governance-policy-framework
+  namespace: cluster2
+spec:
+  installNamespace: open-cluster-management-agent-addon
