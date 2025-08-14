@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: appset-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/rmiguelito/ocm-argocd-hub-spoke.git
+    targetRevision: HEAD
+    path: appproject-app-set
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: guestbook
