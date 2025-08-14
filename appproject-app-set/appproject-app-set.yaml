@@ -29,3 +29,11 @@ spec:
       destination:
         server: https://kubernetes.default.svc
         namespace: guestbook
+      syncPolicy:
+        automated:
+          prune: true
+        syncOptions:
+          - CreateNamespace=true
+      info:
+        - name: cluster_name
+          value: '{{name}}'
